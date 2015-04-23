@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  amount: 1
+  year: 2015-04-23
+  author: MyString
+  pages_amount: 1
+  isbn: MyString
+  udc: MyString
+  lbc: MyString
+  shelf_id: 
+
+two:
+  name: MyString
+  amount: 1
+  year: 2015-04-23
+  author: MyString
+  pages_amount: 1
+  isbn: MyString
+  udc: MyString
+  lbc: MyString
+  shelf_id: 

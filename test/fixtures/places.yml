@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cupboard_number: 1
+  storey_number: 1
+  shelf_number: 1
+
+two:
+  cupboard_number: 1
+  storey_number: 1
+  shelf_number: 1
