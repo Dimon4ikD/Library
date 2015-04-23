@@ -1,8 +1,21 @@
 == README
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+
+
+
+
+=======
+>>>>>>> Stashed changes
 /**
   *
   *this text is unreadable
 */
+<<<<<<< Updated upstream
+=======
+>>>>>>> origin/master
+>>>>>>> Stashed changes
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
