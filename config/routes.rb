@@ -1,12 +1,21 @@
 Rails.application.routes.draw do
+  resources :line_items
+
+  resources :carts
+
+  resources :book_orders
+
   resources :users
 
   resources :book_exemplars
 
   resources :books
 
-  resources :places
+  get "login"=>"sessions#new", as: :login
+  post "login"=>"sessions#create"
+  patch "logout"=>"sessions#destroy", as: :logout
 
+  root "books#index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

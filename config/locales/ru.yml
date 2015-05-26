@@ -1,0 +1,91 @@
+ru:
+  app:
+    name: Библиотека
+  helpers:
+    sure: Вы уверены?
+    submit:
+      create: Сохранить
+      submit: Сохранить
+      update: Сохранить
+  activerecord:
+    models:
+      user: Пользователь
+      book: Книга
+      book_exemplar: Экземпляр
+      place: Место
+      book_order: заказ
+    attributes:
+      user:
+        name: Имя
+        email: Адрес электронной почты
+        password: Пароль
+        password_confirmation: Пароль (повторно)
+        role: Роль
+        login: Логин
+
+      place:
+        cupboard_number: Номер шкафа
+        storey_number: Номер этажа
+        shelf_number: Номер полки
+      book:
+        name: Название
+        amount: Количество
+        year: Год
+        author: Автор
+        pages_amount: Количество страниц
+        isbn: ИСБН
+        udc: ЮДС
+        lbc: ЛБС
+      book_exemplar:
+        book: Книга
+        place: Место
+
+
+
+
+
+      country:
+        name: Название
+      person:
+        name: Имя
+        origin_name: Имя (в оригинале)
+        birthday: Дата рождения
+        avatar: Фото
+        films: Фильмы
+        produced_films: Отрежисс
+      film:
+        name: Название
+        origin_name: Название (в оригинале)
+        slogan: Девиз
+        country: Страна
+        country_id: Страна
+        genre: Жанр
+        genre_id: Жанр
+        director: Режиссер
+        director_id: Режиссер
+        length: Продолжительность
+        year: Год выпуска
+        trailer_url: Адрес трейлера на YouTube
+        cover: Постер
+        description: Описание
+        people: Актеры
+
+
+
+
+  views:
+    pagination:
+      first: "&laquo; Первая"
+      last: "Последняя &raquo;"
+      previous: "&lsaquo; Предыдущая"
+      next: "Следующая &rsaquo;"
+      truncate: "&hellip;"
+  helpers:
+    page_entries_info:
+      one_page:
+        display_entries:
+          zero: "%{entry_name} не найден"
+          one: "Показание <b>1</b> %{entry_name}"
+          other: "Показание <b>all %{count}</b> %{entry_name}"
+      more_pages:
+        display_entries: "Показание %{entry_name} <b>%{first}&nbsp;-&nbsp;%{last}</b> of <b>%{total}</b> в сумме"
