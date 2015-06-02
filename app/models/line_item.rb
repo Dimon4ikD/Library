@@ -1,5 +1,5 @@
 class LineItem < ActiveRecord::Base
-  belongs_to :Cart
-  belongs_to :Book_exemplar
+  belongs_to :cart
+  belongs_to :book_exemplar
 
 end

@@ -1,0 +1,8 @@
+%h1="Заказ №#{@book_order.id}"
+%ol
+  -@book_order.cart.line_items.each do |line_item|
+    %li
+      =line_item.book.name
+      =line_item.quantity
+      x
+      =number_to_currency line_item.price

@@ -1,0 +1,10 @@
+%p#notice= notice
+%p
+  %strong Пользователь:
+  = @book_order.user
+%p
+  %strong Экземпляр:
+  = @book_order.book_exemplar
+= link_to 'Изменить', edit_book_order_path(@book_order)
+|
+= link_to 'Назад', book_orders_path

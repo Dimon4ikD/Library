@@ -1,0 +1,41 @@
+%p#notice= notice
+
+%p
+  %strong Название:
+  = @book.name
+%p
+  %strong Количество:
+  = @book.amount
+%p
+  %strong Дата:
+  = @book.year
+%p
+  %strong Автор:
+  = @book.author
+%p
+  %strong Количество страниц:
+  = @book.pages_amount
+%p
+  %strong Isbn:
+  = @book.isbn
+%p
+  %strong Udc:
+  = @book.udc
+%p
+  %strong Lbc:
+  = @book.lbc
+%p
+  %strong Цена:
+  = @book.price
+%p
+  %strong Описание:
+  = @book.description
+
+.row
+  .col-md-3
+    -if @book.image?
+      =image_tag @book.image.url(:medium), alt: @book.name, class: 'img-responsive'
+
+= link_to 'Изменить', edit_book_path(@book)
+|
+= link_to 'Назад', books_path

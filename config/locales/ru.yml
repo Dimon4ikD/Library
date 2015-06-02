@@ -30,7 +30,7 @@ ru:
       book:
         name: Название
         amount: Количество
-        year: Год
+        year: Дата
         author: Автор
         pages_amount: Количество страниц
         isbn: ИСБН

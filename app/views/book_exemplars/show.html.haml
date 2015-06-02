@@ -1,0 +1,8 @@
+%p#notice= notice
+%p
+  %strong Книга:
+  = @book_exemplar.book
+
+= link_to 'Изменить', edit_book_exemplar_path(@book_exemplar)
+|
+= link_to 'Назад', book_exemplars_path

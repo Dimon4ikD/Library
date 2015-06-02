@@ -1,5 +1,5 @@
-The Library
-
+# **The Library**
+![image](./app/assets/images/logo_5.png)
 
 Diagram:
 

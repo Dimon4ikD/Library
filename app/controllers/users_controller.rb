@@ -24,27 +24,24 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-
     @user = User.new(user_params)
-    session[:user_id]=@user.id
     if @user.save
-      redirect_to root_path, notice: 'Вы успешно зарегистрированы.'
+      if @current_user
+        redirect_to @user, notice: 'Пользователь создан.'
+      else
+        @user.force_authenticate!(self)
+        redirect_to root_path, notice: 'Регистрация завершена.'
+      end
     else
       render :new
     end
   end
 
-  # PATCH/PUT /users/1
-  # PATCH/PUT /users/1.json
   def update
-    respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'Данные пользователя изменены.' }
-        format.json { render :show, status: :ok, location: @user }
-      else
-        format.html { render :edit }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    if @user.update(user_params)
+      redirect_to @user, notice: 'Пользователь изменен.'
+    else
+      render :edit
     end
   end
 
@@ -53,7 +50,7 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
+      format.html { redirect_to users_url, notice: 'Пользователь успешно удален.' }
       format.json { head :no_content }
     end
   end

@@ -1,0 +1,23 @@
+%p#notice= notice
+%p
+  %strong Name:
+  = @user.name
+%p
+  %strong Email:
+  = @user.email
+%p
+  %strong Password:
+  = @user.password
+%p
+  %strong Phone:
+  = @user.phone
+%p
+  %strong Address:
+  = @user.address
+%p
+  %strong Role:
+  = @user.role
+
+= link_to 'Изменить', edit_user_path(@user)
+|
+= link_to 'Назад', users_path

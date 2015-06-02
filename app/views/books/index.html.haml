@@ -1,0 +1,49 @@
+%p#notice= notice
+%h1 Книги
+%table
+  %thead
+    %tr
+      %th Название
+      %th Количество
+      %th Дата создания
+      %th Автор
+      %th Количество страниц
+      %th Isbn
+      %th Udc
+      %th Lbc
+      %th Цена
+      %th{:colspan => "3"}
+  %tbody
+    - @books.each do |book|
+      %tr
+        %td= book.name
+        %td= book.amount
+        %td= book.year
+        %td= book.author
+        %td= book.pages_amount
+        %td= book.isbn
+        %td= book.udc
+        %td= book.lbc
+        %td= book.price
+        %td= link_to 'Показать', book
+        %td= link_to 'Изменить', edit_book_path(book)
+        %td= link_to 'Удалить', book, method: :delete, data: { confirm: 'Are you sure?' }
+%br/
+= link_to 'Новая Книга', new_book_path
+-#= link_to 'В корзину', line_items_path(book_exemplar_id: book_exemplar.id), data:{method: :post, remote: :true}, class:"btn btn-danger glyphicon glyphicon-plus"
+
+-#
+-#.page-header
+-#  %h1 Книги
+-#.container
+-#  -@books.each do |book|
+-#    .col-md-3
+-#      .list-group
+-#        .list-group-item
+-#          %h4
+-#            =book.name
+-#        .list-group-item
+-#          Цена:
+-#          .badge
+-#            =number_to_currency(book.price)
+-#        .list-group-item

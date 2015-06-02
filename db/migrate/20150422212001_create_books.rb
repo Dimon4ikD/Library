@@ -9,7 +9,9 @@ class CreateBooks < ActiveRecord::Migration
       t.string :isbn
       t.string :udc
       t.string :lbc
-      t.string :price, precision: 15, scale: 2
+      t.integer :price
+      t.text :description
+
 
 
       t.timestamps null: false
