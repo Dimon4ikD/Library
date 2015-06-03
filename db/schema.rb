@@ -23,12 +23,16 @@ ActiveRecord::Schema.define(version: 20150602103109) do
 
   create_table "book_orders", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "book_exemplar_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.integer  "cart_id"
+    t.integer  "book_id"
+    t.text     "comment"
+    t.text     "address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  add_index "book_orders", ["book_exemplar_id"], name: "index_book_orders_on_book_exemplar_id"
+  add_index "book_orders", ["book_id"], name: "index_book_orders_on_book_id"
+  add_index "book_orders", ["cart_id"], name: "index_book_orders_on_cart_id"
   add_index "book_orders", ["user_id"], name: "index_book_orders_on_user_id"
 
   create_table "books", force: :cascade do |t|
@@ -55,21 +59,20 @@ ActiveRecord::Schema.define(version: 20150602103109) do
   end
 
   create_table "carts", force: :cascade do |t|
-    t.integer  "books_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "line_items", force: :cascade do |t|
     t.integer  "quantity"
-    t.decimal  "price",            precision: 15, scale: 2
+    t.decimal  "price",      precision: 15, scale: 2
     t.integer  "cart_id"
-    t.integer  "book_exemplar_id"
-    t.datetime "created_at",                                null: false
-    t.datetime "updated_at",                                null: false
+    t.integer  "book_id"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
 
-  add_index "line_items", ["book_exemplar_id"], name: "index_line_items_on_book_exemplar_id"
+  add_index "line_items", ["book_id"], name: "index_line_items_on_book_id"
   add_index "line_items", ["cart_id"], name: "index_line_items_on_cart_id"
 
   create_table "users", force: :cascade do |t|

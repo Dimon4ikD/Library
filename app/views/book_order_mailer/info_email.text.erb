@@ -1,7 +1,7 @@
 Заказ №<%=@book_order.id%> оформлен
 ==============================
 Ваш заказ:
-<%book_@order.cart.line_items.each_with_index do |line_item, i|%>
+<%@book_order.cart.line_items.each_with_index do |line_item, i|%>
     <%="#{i+1}."%>
     <%=line_item.book.name%>
     <%=line_item.quantity%>x<%=number_to_currency line_item.price%>

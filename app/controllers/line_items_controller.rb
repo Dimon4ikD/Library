@@ -29,10 +29,10 @@ class LineItemsController < ApplicationController
   def create
     case params[:place]
       when nil
-        @product = Product.find(params[:product_id])
-        @cart.add_item(@product)
+        @book = Book.find(params[:book_id])
+        @cart.add_item(@book)
         respond_to do |format|
-          format.html{redirect_to products_path, notice: 'Товар добавлен в корзину.'}
+          format.html{redirect_to books_path, notice: 'Книга добавлена в корзину.'}
           format.js{}
         end
       when "cart"
@@ -40,7 +40,7 @@ class LineItemsController < ApplicationController
         @line_item.quantity+=1
         @line_item.save
         respond_to do |format|
-          format.html{redirect_to @cart, notice: 'Товар добавлен в корзину'}
+          format.html{redirect_to @cart, notice: 'Книга добавлена в корзину.'}
           format.js{}
         end
       when "line_items"
@@ -48,7 +48,7 @@ class LineItemsController < ApplicationController
         @line_item.quantity+=1
         @line_item.save
         respond_to do |format|
-          format.html{redirect_to line_items_path, notice: 'Товар добавлен в корзину'}
+          format.html{redirect_to line_items_path, notice: 'Книга добавлена в корзину'}
           format.js{}
         end
       when "show"
@@ -56,7 +56,7 @@ class LineItemsController < ApplicationController
         @line_item.quantity+=1
         @line_item.save
         respond_to do |format|
-          format.html{redirect_to product_path(@line_item.product), notice: 'Товар добавлен в корзину'}
+          format.html{redirect_to book_path(@line_item.book), notice: 'Книга добавлена в корзину'}
           format.js{}
         end
     end
@@ -85,7 +85,7 @@ class LineItemsController < ApplicationController
       when "cart"
         redirect_to @cart, notice: 'Товар удалён.'
       when "show"
-        redirect_to product_path(@line_item.product), notice: 'Товар удален'
+        redirect_to book_path(@line_item.book), notice: 'Товар удален'
       when "line_items"
         redirect_to line_items_path, notice: 'Товар удален'
     end
@@ -99,6 +99,6 @@ class LineItemsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def line_item_params
-    params.require(:line_item).permit(:quantity, :price, :Cart_id, :Book_exemplar_id)
+    params.require(:line_item).permit(:quantity, :price, :cart_id, :book_id)
   end
 end

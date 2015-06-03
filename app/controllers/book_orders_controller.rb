@@ -6,7 +6,7 @@ class BookOrdersController < ApplicationController
   # GET /book_order
   # GET /book_order.json
   def index
-    @book_orders = Book_order.ordering.page(params[:page])
+    @book_orders = BookOrder.ordering.page(params[:page])
   end
 
   # GET /book_order/1
@@ -16,7 +16,7 @@ class BookOrdersController < ApplicationController
 
   # GET /book_order/new
   def new
-    @book_order = Book_order.new
+    @book_order = BookOrder.new
   end
 
   # GET /book_order/1/edit
@@ -26,10 +26,9 @@ class BookOrdersController < ApplicationController
   # POST /book_order
   # POST /book_order.json
   def create
-    @book_order = Book_order.new(new_order_params)
+    @book_order = BookOrder.new(new_book_order_params)
     @book_order.cart = @cart
     @book_order.user = @current_user
-    @book_order.status = 0
     @book_order.add_lineitems(@cart)
     if @book_order.save
       session.delete(:cart_id)
@@ -43,7 +42,7 @@ class BookOrdersController < ApplicationController
   # PATCH/PUT /book_order/1.json
   def update
     respond_to do |format|
-      if @book_order.update(order_params)
+      if @book_order.update(book_order_params)
         format.html { redirect_to @book_order, notice: 'Заказ изменён.' }
         format.json { render :show, status: :ok, location: @book_order }
       else
@@ -58,23 +57,23 @@ class BookOrdersController < ApplicationController
   def destroy
     @book_order.destroy
     respond_to do |format|
-      format.html { redirect_to orders_url, notice: 'Заказ удалён.' }
+      format.html { redirect_to book_orders_url, notice: 'Заказ удалён.' }
       format.json { head :no_content }
     end
   end
 
   private
   # Use callbacks to share common setup or constraints between actions.
-  def set_order
-    @book_order = Book_order.find(params[:id])
+  def set_book_order
+    @book_order = BookOrder.find(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
-  def order_params
-    params.require(:book_order).permit(:cart_id, :user_id, :address, :status, :comment)
+  def book_order_params
+    params.require(:book_order).permit(:cart_id, :user_id, :address, :comment)
   end
 
-  def new_order_params
+  def new_book_order_params
     params.require(:book_order).permit(:address)
   end
 end

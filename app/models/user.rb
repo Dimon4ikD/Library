@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
 
   before_validation :set_default_role
 
-  scope :ordering,->{order(:name)}
+  scope :ordering,->{book_order(:name)}
 
   def set_default_role
     self.role||=0

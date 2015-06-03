@@ -5,15 +5,15 @@ class BookOrder < ActiveRecord::Base
 
   belongs_to :cart
   belongs_to :user
-  belongs_to :book_exemplar
+  # belongs_to :book_exemplar
   has_many :line_items, dependent: :destroy
-  scope :ordering, -> {order(created_at: :desc)}
+  scope :ordering, -> {book_order(created_at: :desc)}
 
   STATUSES=%w(Оформлен Подтверждён Отменён Доставляется Завершён) #0 1 2 3 4
   validates :cart, presence: true
   validates :user, presence: true
-  validates :email, presence: true
-  validates :status, presence: true, inclusion: {in: 0...STATUSES.size}
+  # validates :email, presence: true
+
 
   validate :check_cart
 
@@ -30,7 +30,7 @@ class BookOrder < ActiveRecord::Base
     end
   end
   def send_mail
-    OrderMailer.info_email(self).deliver_later
+    BookOrderMailer.info_email(self).deliver_later
     true
   end
 

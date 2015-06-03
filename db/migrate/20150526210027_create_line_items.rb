@@ -3,12 +3,14 @@ class CreateLineItems < ActiveRecord::Migration
     create_table :line_items do |t|
       t.integer :quantity
       t.decimal :price, precision: 15, scale: 2
-      t.references :cart, index: true
-      t.references :book_exemplar, index: true
+      t.belongs_to :cart, index: true
+      t.belongs_to :book, index: true
 
       t.timestamps null: false
     end
-    add_foreign_key :line_items, :Carts
-    add_foreign_key :line_items, :Book_exemplars
+    add_foreign_key :line_items, :carts
+    add_foreign_key :line_items, :books
   end
 end
+
+

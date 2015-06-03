@@ -1,41 +1,56 @@
-%p#notice= notice
+
+.br
+.page-header
+  .h1=@book.name
+
+-#-if @book.image?
+-#  =link_to @book.image.url do
+-#    =image_tag @book.image.url(:thumb)
+    -#=image_tag @book.image, alt: @book.name
+-if @book.image?
+  = image_tag @book.image.url(:medium), alt: @book.name, class: 'img-responsive'
+-#.row
+-#  .pull-right.col-md-3{style: "white-space: nowrap"}
+-#    .glyphicon.glyphicon-chevron-right
+-#    -@sum,@sum2=0,0;@cart.line_items.each{|itm| @sum+=itm.quantity;@sum2+=itm.price*itm.quantity}
+-#    = link_to "В вашей корзине #{@sum} #{Russian.p(@sum,'товар','товара','товаров')}. Общая цена: #{number_to_currency(@sum2, separator: ",", delimiter: "", unit: "₽", format: "%n %u")}", @cart, class: "btn btn-danger", :style => "white-space:normal; width: 216px;"
+
 
 %p
-  %strong Название:
+  %b Название:
   = @book.name
+
 %p
-  %strong Количество:
-  = @book.amount
-%p
-  %strong Дата:
-  = @book.year
-%p
-  %strong Автор:
-  = @book.author
-%p
-  %strong Количество страниц:
-  = @book.pages_amount
-%p
-  %strong Isbn:
-  = @book.isbn
-%p
-  %strong Udc:
-  = @book.udc
-%p
-  %strong Lbc:
-  = @book.lbc
-%p
-  %strong Цена:
-  = @book.price
-%p
-  %strong Описание:
+  %b Описание:
   = @book.description
+%p
+  %b Цена:
+  = number_to_currency(@book.price)
+%p
 
-.row
-  .col-md-3
-    -if @book.image?
-      =image_tag @book.image.url(:medium), alt: @book.name, class: 'img-responsive'
+-a=@cart.line_items.where("book_id= ?",@book.id)
+-if !a.blank?
+  -b=a[0]
+  %b В вашей корзине:
+  =link_to '',line_item_path(id:b.id,place: "show"), data:{method: :delete}, class:"btn btn-mini glyphicon glyphicon-minus"
+  #{b.quantity}
+  =link_to '',line_items_path(id:b.id,place: "show"),data:{:method => :post}, class:"btn btn-mini glyphicon glyphicon-plus"
+%p
 
-= link_to 'Изменить', edit_book_path(@book)
-|
-= link_to 'Назад', books_path
+
+= link_to line_items_path(book_id: @book.id,book:@book), data:{method: :post}, class: "btn btn-success" do
+  =fa_icon "cart-plus"
+  Добавить в корзину
+\|
+= link_to @cart, class: "btn btn-info" do
+  =fa_icon "share"
+  Перейти к корзине
+\|
+= link_to edit_book_path(@book), class: "btn btn-warning" do
+  =fa_icon "pencil"
+  Редактировать
+\|
+= link_to books_path, class: "btn btn-primary" do
+  =fa_icon "reply"
+  Вернуться к списку товаров
+

@@ -1,5 +1,19 @@
-%h1 Изменение заказа
-= render 'form'
+%h1 Редактирование заказа
+= form_for @book_order do |ord|
+  =error_messages_for(@book_order)
+  -#= render 'form'
+  .form-group
+    = label_tag('book_order[user_id]', Book_order.human_attribute_name(:user_id))
+    = select_user('book_order[user_id]', @book_order.user_id)
+  .form-group
+    =ord.label :comment
+    =ord.text_field :comment, class: "form-control"
+  .form-group
+    =ord.label :address
+    =ord.text_field :address, class: "form-control"
+
+  .actions
+    = ord.submit 'Сохранить'
 = link_to 'Показать', @book_order
-|
+\|
 = link_to 'Назад', book_orders_path

@@ -1,10 +1,35 @@
 %p#notice= notice
+
 %p
-  %strong Пользователь:
-  = @book_order.user
+  %b Корзина:
+  = @book_order.cart.id
 %p
-  %strong Экземпляр:
-  = @book_order.book_exemplar
+  %b Пользователь:
+  = @book_order.user.email
+  = link_to @book_order.user, class: "btn btn-link" do
+    =fa_icon "arrow-circle-right"
+    Показать
+%p
+  %b Адрес доставки:
+  = @book_order.address
+%p
+  %b Комментарий:
+  = @book_order.comment
+%p
+  %b Список товаров:
+  .row
+    - @book_order.cart.line_items.each do |item|
+      .col-md-2
+        .list-group.ul
+          .list-group-item.active.li
+            .span.badge=item.quantity
+            =item.book.name
+          .list-group-item.li
+            =item.book.description
+          .list-group-item.li
+            .span.badge= fa_icon "ruble"
+            =number_to_currency(item.price*item.quantity,
+              separator: ",", delimiter: "", format: "%n")
 = link_to 'Изменить', edit_book_order_path(@book_order)
 |
 = link_to 'Назад', book_orders_path

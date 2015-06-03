@@ -1,10 +1,10 @@
 class Cart < ActiveRecord::Base
-  has_many :line_items, ->{includes(:book_exemplar).order(:created_at)}, dependent: :destroy
-  has_one :order, dependent: :destroy
+  has_many :line_items, ->{includes(:book).order(:created_at)}, dependent: :destroy
+  has_one :book_order, dependent: :destroy
   def add_item(p)
-    line_item = line_items.where(book_exemplar_id: p.id).first
+    line_item = line_items.where(book_id: p.id).first
     unless line_item
-      line_item = self.line_items.build(book_exemplar: p, quantity: 0, price: p.price)
+      line_item = self.line_items.build(book: p, quantity: 0, price: p.price)
     end
     line_item.quantity+=1
     line_item.save

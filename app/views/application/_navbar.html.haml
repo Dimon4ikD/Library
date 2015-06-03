@@ -11,7 +11,7 @@
     #menu.collapse.navbar-collapse
       %ul.nav.navbar-nav
         %li= link_to "Все товары", books_path
-        %li= link_to "Корзина", carts_path
+        %li= link_to "Корзина", line_items_path
 
 
 
@@ -21,6 +21,8 @@
           %li= link_to "Войти", login_path
         -else
           %li
-            %span.navbar-text=@current_user.email
+            = link_to "#{@current_user.email}", @current_user
+            -#%span.navbar-text=@current_user.email, user
+
           %li
             = link_to "Выйти", logout_path, data:{method: :patch}

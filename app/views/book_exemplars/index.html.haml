@@ -9,7 +9,7 @@
     - @book_exemplars.each do |book_exemplar|
       %tr
         %td= book_exemplar.book
-        %td= book_exemplar.place
+
         %td= link_to 'Показать', book_exemplar
         %td= link_to 'Изменить', edit_book_exemplar_path(book_exemplar)
         %td= link_to 'Удалить', book_exemplar, method: :delete, data: { confirm: 'Are you sure?' }
