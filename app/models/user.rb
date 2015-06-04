@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   has_secure_password
-
+  before_validation :set_default_role
   cattr_reader :roles
   has_many :book_orders, dependent: :nullify
 
@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   validates :address, presence: true
 
 
-  before_validation :set_default_role
+
 
   scope :ordering,->{book_order(:name)}
 
@@ -33,6 +33,18 @@ class User < ActiveRecord::Base
   def admin?
     role==1
   end
+
+
+  def moderator?
+    role==1 || administrator?
+  end
+  def administrator?
+    role==2
+  end
+  def user?
+    role==0
+  end
+
 
 
 end

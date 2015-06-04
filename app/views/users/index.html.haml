@@ -1,26 +1,66 @@
-%p#notice= notice
-%h1 Listing Users
-%table
-  %thead
-    %tr
-      %th Почта
-      %th Пароль
-      %th Телефон
-      %th Адрес
-      %th Роль
-      %th Имя
-      %th{:colspan => "3"}
-  %tbody
-    - @users.each do |user|
-      %tr
-        %td= user.email
-        %td= user.password
-        %td= user.phone
-        %td= user.address
-        %td= user.role
-        %td= user.name
-        %td= link_to 'Показать', user
-        %td= link_to 'Изменить', edit_user_path(user)
-        %td= link_to 'Удалить', user, method: :delete, data: { confirm: 'Are you sure?' }
+-#-#-if !@current_user.nil?
+-#-#  -if @current_user.admin?
+-#-#    =redirect_to @current_user, notice:"Вы не админинстратор"
+-#
+-#%p#notice= notice
+-#%h1 Пользователи
+-#%table
+-#  %thead
+-#    %tr
+-#      %th Почта
+-#      %th Пароль
+-#      %th Телефон
+-#      %th Адрес
+-#      %th Роль
+-#      %th Имя
+-#      %th{:colspan => "3"}
+-#  %tbody
+-#    - @users.each do |user|
+-#      %tr
+-#        %td= user.email
+-#        %td= user.password
+-#        %td= user.phone
+-#        %td= user.address
+-#        %td= user.role
+-#        %td= user.name
+-#        %td= link_to 'Показать', user, class: "btn btn-info"
+-#        %td= link_to 'Изменить', edit_user_path(user), class: "btn btn-warning"
+-#        %td= link_to 'Удалить', user, method: :delete, data: { confirm: 'ВЫ уверены?' }, class: "btn btn-danger"
+-#%br/
+-#= link_to 'Новый пользователь', new_user_path
+-#
+-#  - @cart.line_items.each do |item|
+.page-header
+  <h2>Пользователи</h2>
+.row
+  .list-group
+    .list-group-item.active
+      .row
+        .col-md-3
+          Имя
+        .col-md-2
+          Почта
+        .col-md-2
+          Телефон
+        .col-md-2
+          Адрес
+        .col-md-1
+          Роль
+  - @users.each do |user|
+    .list-group-item
+      .row
+        .col-md-3
+          #{user.name}
+        .col-md-2
+          #{user.email}
+        .col-md-2
+          #{user.phone}
+        .col-md-2
+          #{user.address}
+        .col-md-1
+          #{user.role}
+        = link_to '', user, class: "btn btn-info glyphicon glyphicon-search", title: "Показать"
+        = link_to '', edit_user_path(user), class: "btn btn-warning glyphicon glyphicon-pencil", title:"Редактировать"
+        = link_to '', user, method: :delete, data: { confirm: 'ВЫ уверены?' }, class: "btn btn-danger glyphicon glyphicon-trash", title: "Удалить"
 %br/
 = link_to 'Новый пользователь', new_user_path

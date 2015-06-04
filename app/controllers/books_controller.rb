@@ -5,6 +5,8 @@ class BooksController < ApplicationController
   # GET /books.json
   def index
     @books = Book.page(params[:page])
+    # data = open(params[:file])
+    # send_data data, :filename => params[:document]
   end
 
   # GET /books/1

@@ -5,11 +5,21 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     @users = User.all
+    # @current_user.try.admin?
+    if !@current_user.try(:admin?)
+      redirect_to new_user_path, notice:"Вы не админинстратор"
+    end
+
   end
 
   # GET /users/1
   # GET /users/1.json
   def show
+    # if @current_user.blank?
+    #   if !@current_user.admin?
+    #     redirect_to @current_user, notice:"Вы не админинстратор"
+    #   end
+    # end
   end
 
   # GET /users/new

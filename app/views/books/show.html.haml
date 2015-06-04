@@ -7,8 +7,14 @@
 -#  =link_to @book.image.url do
 -#    =image_tag @book.image.url(:thumb)
     -#=image_tag @book.image, alt: @book.name
--if @book.image?
-  = image_tag @book.image.url(:medium), alt: @book.name, class: 'img-responsive'
+
+
+-if !@book.image.blank?
+  = image_tag @book.image.url(:medium), height:"265"#, alt: @book.name, class: 'img-responsive'
+-else
+  =image_tag ("blank.jpeg"),src: root_path, height:"265", data: {toggle: "collapse", target:"#menu"}#, alt: @book.name, class: 'img-responsive'
+
+
 -#.row
 -#  .pull-right.col-md-3{style: "white-space: nowrap"}
 -#    .glyphicon.glyphicon-chevron-right
@@ -36,7 +42,8 @@
   #{b.quantity}
   =link_to '',line_items_path(id:b.id,place: "show"),data:{:method => :post}, class:"btn btn-mini glyphicon glyphicon-plus"
 %p
-
+-#-if @current_user.admin?
+-#  =  @book.document.url(:medium), alt: @book.name, class: 'img-responsive'
 
 = link_to line_items_path(book_id: @book.id,book:@book), data:{method: :post}, class: "btn btn-success" do
   =fa_icon "cart-plus"

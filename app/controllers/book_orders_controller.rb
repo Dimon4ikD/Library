@@ -44,10 +44,10 @@ class BookOrdersController < ApplicationController
     respond_to do |format|
       if @book_order.update(book_order_params)
         format.html { redirect_to @book_order, notice: 'Заказ изменён.' }
-        format.json { render :show, status: :ok, location: @book_order }
+        format.json { render :show, location: @book_order }
       else
         format.html { render :edit }
-        format.json { render json: @book_order.errors, status: :unprocessable_entity }
+        format.json { render json: @book_order.errors }
       end
     end
   end

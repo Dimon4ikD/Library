@@ -50,12 +50,10 @@
     .col-md-4
       .list-group
         .list-group-item
-          -#= image_tag bookd.image.url(:medium),size:"173x232", alt: bookd.name, class: 'img-responsive'
           -if !bookd.image.blank?
-            = image_tag bookd.image.url(:medium),size:"173x232", alt: bookd.name, class: 'img-responsive'
+            = image_tag bookd.image.url(:medium), height:"265", style: "display: block; margin: 0px auto;", alt: bookd.name, class: 'img-responsive'
           -else
-            -#= image_tag ""
-            =image_tag ("blank_book.jpg"),src: root_path, size:"173x232", data: {toggle: "collapse", target:"#menu"}
+            =image_tag ("blank.jpeg"),src: root_path, height:"265", style: "display: block; margin: 0px auto;", data: {toggle: "collapse", target:"#menu"}
         .list-group-item
           %h4
             =bookd.name

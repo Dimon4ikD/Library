@@ -1,6 +1,6 @@
 class Book < ActiveRecord::Base
   has_attached_file :image, styles:{medium: "300x300", thumb:"100x100"}
-  has_attached_file :document, styles: {thumbnail: "60x60#"}
+  has_attached_file :document #, styles: {thumbnail: "60x60"}
   has_many :line_items, dependent: :nullify
 
   before_destroy :can_destroy?
@@ -18,5 +18,9 @@ class Book < ActiveRecord::Base
   def can_destroy?
     line_items.blank?
   end
+
+  # def download
+  #   file_name = params["file_id"] + ".pdf" data = open("s3.amazonaws.com/#{ENV['S3_BUCKET_NAME']}/#{file_name}") send_data data.read, :filename => file_name, :type => "application/pdf", :disposition => 'attachment', :stream => 'true', :buffer_size => '4096'
+  # end
 
 end

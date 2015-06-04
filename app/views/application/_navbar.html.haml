@@ -10,7 +10,7 @@
       =link_to "Библиотека", root_path, class: "navbar-brand"#, "logo_5.png"
     #menu.collapse.navbar-collapse
       %ul.nav.navbar-nav
-        %li= link_to "Все товары", books_path
+        %li= link_to "Все книги", books_path
         %li= link_to "Корзина", line_items_path
 
 
@@ -19,10 +19,17 @@
         -if @current_user.blank?
           %li= link_to "Регистрация", new_user_path
           %li= link_to "Войти", login_path
-        -else
+        -elsif !@current_user.blank?
           %li
             = link_to "#{@current_user.email}", @current_user
+          -if  @current_user.admin?
+            %li= link_to "Пользователи", users_path
+
             -#%span.navbar-text=@current_user.email, user
+        -#
+        -#-if @current_user.blank?
+        -#  -if  @current_user.admin?
+        -#    %li= link_to "Пользователи", users_path
 
           %li
             = link_to "Выйти", logout_path, data:{method: :patch}

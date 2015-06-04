@@ -1,3 +1,7 @@
+-#-if !@current_user.admin?
+-#  = redirect_to @current_user, notice:"Вы не админинстратор"
+
+  = link_to "#{@current_user.email}", @current_user
 %p#notice= notice
 %p
   %strong Name:
