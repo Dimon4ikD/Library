@@ -11,6 +11,7 @@ class CreateBooks < ActiveRecord::Migration
       t.string :lbc
       t.integer :price
       t.text :description
+      t.attachment :document
 
 
 

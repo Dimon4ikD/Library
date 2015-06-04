@@ -25,6 +25,7 @@ class BooksController < ApplicationController
   # POST /books.json
   def create
     @book = Book.new(book_params)
+    @book.document = params[:book][:document]
     if @book.save
       redirect_to @book
     else
@@ -58,6 +59,6 @@ class BooksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def book_params
-      params.require(:book).permit(:name, :amount, :year, :author, :pages_amount, :isbn, :udc, :lbc, :image, :description, :price)
+      params.require(:book).permit(:name, :amount, :year, :author, :pages_amount, :isbn, :udc, :lbc, :image, :description, :price, :document)
     end
 end

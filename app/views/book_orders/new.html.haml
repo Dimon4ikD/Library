@@ -10,9 +10,12 @@
     .row
     %br
     .actions=f.submit nil, class: 'btn btn-primary'
+    -#= image_tag bookd.image.url(:medium),size:"173x232", alt: bookd.name, class: 'img-responsive'
+    -#-if !@book.document.blank?
+    -#  =link_to "Download Now", @book.document, :class => "btn btn-large btn-danger"
 
 
     = link_to 'Назад', book_orders_path
 
-= link_to 'Назад', book_orders_path
+
 

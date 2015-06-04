@@ -48,10 +48,17 @@
     = f.label :description
     %br/
     = f.text_field :description
+  -if !@book.image.blank?
+    = image_tag @book.image.url(:medium),size:"173x232", alt: @book.name, class: 'img-responsive'
+
   .field
     = f.label :image
     %br/
     = f.file_field :image
+  .field
+    = f.label :document
+    %br/
+    = f.file_field :document
 
   .actions=f.submit nil, class: "btn btn-primary"
 
