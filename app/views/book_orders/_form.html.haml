@@ -3,15 +3,15 @@
 
   .field
     = f.label :cart
-    = f.text_field :cart
+    = f.text_field :cart, class: 'form-control'
   .field
     = f.label :user
-    = f.text_field :user
+    = f.text_field :user, class: 'form-control'
   .field
     = f.label :address
-    = f.text_area :address
+    = f.text_area :address, class: 'form-control'
   .field
     = f.label :comment
-    = f.text_area :comment
+    = f.text_area :comment, class: 'form-control'
   .actions
-    = f.submit 'Сохранить'
+    = f.submit 'Сохранить', class: 'btn btn-primary'

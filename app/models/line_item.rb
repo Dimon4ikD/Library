@@ -1,7 +1,6 @@
 class LineItem < ActiveRecord::Base
   belongs_to :cart
   # belongs_to :book_exemplar
-
   belongs_to :book
 
   validates :book, presence: true

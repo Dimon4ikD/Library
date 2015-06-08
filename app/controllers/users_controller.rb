@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     if !@current_user.try(:admin?)
       redirect_to new_user_path, notice:"Вы не админинстратор"
     end
-
+    # @users = User.ordering.page(params[:page])
   end
 
   # GET /users/1

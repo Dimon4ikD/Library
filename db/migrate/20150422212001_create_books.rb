@@ -14,9 +14,9 @@ class CreateBooks < ActiveRecord::Migration
       t.attachment :document
 
 
-
+      t.has_many :book_exemplars
       t.timestamps null: false
     end
-    add_foreign_key :books
+    add_foreign_key :books, :book_exemplars
   end
 end

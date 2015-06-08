@@ -6,7 +6,13 @@ class BookOrdersController < ApplicationController
   # GET /book_order
   # GET /book_order.json
   def index
-    @book_orders = BookOrder.ordering.page(params[:page])
+    if !@current_user.blank?
+      if @current_user.role == 0
+        @book_orders = BookOrder.where(user_id: @current_user.id).ordering.page(params[:page])
+      else
+        @book_orders = BookOrder.ordering.page(params[:page])
+      end
+    end
   end
 
   # GET /book_order/1
@@ -47,7 +53,7 @@ class BookOrdersController < ApplicationController
         format.json { render :show, location: @book_order }
       else
         format.html { render :edit }
-        format.json { render json: @book_order.errors }
+        format.json { render json: @book_order.errors, status: :unprocessable_entity }
       end
     end
   end

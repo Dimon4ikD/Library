@@ -1,5 +1,5 @@
 class LineItemsController < ApplicationController
-  #include CurrentCart
+  include CurrentCart
 
   #before_action :set_cart, only: [:create, :destroy]
   before_action :set_line_item, only: [:show, :edit, :update, :destroy]
@@ -83,11 +83,11 @@ class LineItemsController < ApplicationController
     end
     case params[:place]
       when "cart"
-        redirect_to @cart, notice: 'Товар удалён.'
+        redirect_to @cart, notice: 'Книга удалёна.'
       when "show"
-        redirect_to book_path(@line_item.book), notice: 'Товар удален'
+        redirect_to book_path(@line_item.book), notice: 'Книга удалена'
       when "line_items"
-        redirect_to line_items_path, notice: 'Товар удален'
+        redirect_to line_items_path, notice: 'Книга удалена'
     end
   end
 

@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   before_validation :set_default_role
   cattr_reader :roles
   has_many :book_orders, dependent: :nullify
+  has_many :book_exemplars, dependent: :nullify
 
   @@roles=%w(Пользователь Администратор)
 
@@ -12,8 +13,6 @@ class User < ActiveRecord::Base
   validates :password, length: {minimum: 6, if: 'password.present?'}, presence: {on: :create}, :confirmation => true
   validates :phone, presence: true, :numericality => true, :length => { :minimum => 10, :maximum => 15 }
   validates :address, presence: true
-
-
 
 
   scope :ordering,->{book_order(:name)}

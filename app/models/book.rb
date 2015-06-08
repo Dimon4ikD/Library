@@ -9,7 +9,7 @@ class Book < ActiveRecord::Base
   #validates_attachment :document, content_type: {content_type:/\A\//}
   validates_attachment :image, content_type: {content_type: /\Aimage\/.*\z/}
 
-
+  validates :amount, numericality:{only_integer: true}
   validates :name, presence: true, length: {maximum: 200}
   validates :price, presence: true, numericality:{greater_than: 0}
 
@@ -17,6 +17,10 @@ class Book < ActiveRecord::Base
 
   def can_destroy?
     line_items.blank?
+  end
+
+  def can_sell?
+    amount>0
   end
 
   # def download

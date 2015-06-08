@@ -28,7 +28,7 @@
     .list-group-item.active
       .row
         .col-md-3
-          Названиеце
+          Название
         .col-md-3
           Количество
         .col-md-3
@@ -57,7 +57,7 @@
         Всего товарных позиций: #{@cart.line_items.length}
         .br
         .li
-          Всего товаров:
+          Всего книг:
           #{@cart.line_items.sum("quantity")}
       .list-group-item.glyphicon.glyphicon-ruble
         Цена:
@@ -66,6 +66,6 @@
 -#= link_to 'Редактировать', edit_cart_path(@cart), class: "btn btn-link"
 = link_to 'Очистить корзину', @cart, data:{method: :delete, confirm: "Вы уверены?"}, class: "btn btn-primary"
 \|
-= link_to 'Вернуться к выбору товаров', books_path, class: "btn btn-info"
+= link_to 'Вернуться к выбору книг', books_path, class: "btn btn-info"
 \|
 = link_to 'Оформить заказ', new_book_order_path, class: "btn btn-danger"

@@ -10,44 +10,44 @@
   .field
     = f.label :name
     %br/
-    = f.text_field :name
+    = f.text_field :name, class: 'form-control'
   .field
     = f.label :amount
     %br/
-    = f.number_field :amount
+    = f.number_field :amount, class: 'form-control'
   .field
     = f.label :year
     %br/
     -#= f.date_select :year, :discard_year => true
-    = f.text_field :year
+    = f.text_field :year, class: 'form-control'
   .field
     = f.label :author
     %br/
-    = f.text_field :author
+    = f.text_field :author, class: 'form-control'
   .field
     = f.label :pages_amount
     %br/
-    = f.number_field :pages_amount
+    = f.number_field :pages_amount, class: 'form-control'
   .field
     = f.label :isbn
     %br/
-    = f.text_field :isbn
+    = f.text_field :isbn, class: 'form-control'
   .field
     = f.label :udc
     %br/
-    = f.text_field :udc
+    = f.text_field :udc, class: 'form-control'
   .field
     = f.label :lbc
     %br/
-    = f.text_field :lbc
+    = f.text_field :lbc, class: 'form-control'
   .field
     = f.label :price
     %br/
-    = f.number_field :price
+    = f.number_field :price, class: 'form-control'
   .field
     = f.label :description
     %br/
-    = f.text_area :description
+    = f.text_area :description, class: 'form-control'
   -if !@book.image.blank?
     = image_tag @book.image.url(:medium),size:"173x232", alt: @book.name, class: 'img-responsive'
 
@@ -60,5 +60,5 @@
   -#  %br/
   -#  = f.file_field :document
 
-  .actions=f.submit nil, class: "btn btn-primary"
+  .actions=f.submit 'Сохранить', class: "btn btn-primary"
 

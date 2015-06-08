@@ -19,6 +19,8 @@
   %strong Role:
   = @user.role
 
+-#= link_to 'Книги', book_exemplar(@user)
+
 = link_to 'Изменить', edit_user_path(@user)
 |
 = link_to 'Назад', users_path
