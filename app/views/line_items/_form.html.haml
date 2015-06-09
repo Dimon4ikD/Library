@@ -8,16 +8,16 @@
 
   .field
     = f.label :quantity
-    = f.number_field :quantity
+    = f.number_field :quantity, class: 'form-control'
   .field
     = f.label :price
-    = f.text_field :price
+    = f.text_field :price, class: 'form-control'
   .field
     = f.label :cart
-    = f.text_field :cart
+    = f.text_field :cart, class: 'form-control'
   .field
     = f.label :book
-    = f.text_field :book
+    = f.text_field :book, class: 'form-control'
 
   .actions
-    = f.submit 'Сохранить'
+    = f.submit 'Сохранить', class: "btn btn-primary"

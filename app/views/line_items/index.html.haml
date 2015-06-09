@@ -35,19 +35,21 @@
           Цена
         .col-md-3
           Сумма
-  - @cart.line_items.each do |item|
-    .list-group-item
-      .row
-        .col-md-3
-          #{item.book.name}
-        .col-md-3
-          =link_to '',line_item_path(id:item.id,place:"line_items"), data:{method: :delete}, class:"btn btn-mini glyphicon glyphicon-minus"
-          #{item.quantity}
-          =link_to '',line_items_path(id:item.id,place:"line_items"),data:{method: :post}, class:"btn btn-mini glyphicon glyphicon-plus"
-        .col-md-3
-          #{item.price}
-        .col-md-3
-          #{item.quantity*item.price}
+  .list-group
+    - @cart.line_items.each do |item|
+      .list-group-item
+        .row
+          .col-md-3
+            #{item.book.name}
+          .col-md-3
+            =link_to '',line_item_path(id:item.id,place:"line_items"), data:{method: :delete}, class:"btn btn-mini glyphicon glyphicon-minus"
+            #{item.quantity}
+            =link_to '',line_items_path(id:item.id,place:"line_items"),data:{method: :post}, class:"btn btn-mini glyphicon glyphicon-plus"
+          .col-md-3
+            #{item.price}
+          .col-md-3
+            #{item.quantity*item.price}
+%p
 .row
   .col-md-4
     .list-group
@@ -69,3 +71,4 @@
 = link_to 'Вернуться к выбору книг', books_path, class: "btn btn-info"
 \|
 = link_to 'Оформить заказ', new_book_order_path, class: "btn btn-danger"
+%p

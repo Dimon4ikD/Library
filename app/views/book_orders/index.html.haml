@@ -1,39 +1,178 @@
+-#-if @current_user.try(:admin?)
+
+-#.page-header
+-#  <h2>Заказы</h2>
+
+- if @current_user.blank?
+  =redirect_to new_user_path, notice:"Вы не зарегестрированный пользователь"
+
 - if !@current_user.blank?
-  - if @current_user.role == 0
-    %h1 Список заказов
-  - else
+  -if @current_user.try(:admin?)
     %h1 Заказы всех пользователей
 
 
-- if !@current_user.blank?
-  - if BookOrder.where(user_id: @current_user.id).count == 0
-    .alert.alert-info У Вас еще нет ни одного заказа
-  - else
-    %table.table.table-bordered.table-hover.table-condensed
-      %thead
-        %tr
-          %th Корзина
-          %th Пользователь
-          %th Адрес
-          %th Комментарий
-          %th
-          %th
-          - if !@current_user.blank?
-            - if @current_user.role!=0
-              %th
+    .row
+      .list-group
+        .list-group-item.active
+          .row
+            .col-md-1
+              Корзина
+            .col-md-2
+              Пользователь
+            .col-md-3
+              Адрес
+            .col-md-1
+              Количество
+            .col-md-2
+              Дата
+      .list-group
+        - @book_orders.each do |item|
+          .list-group-item
+            .row
+              .col-md-1
+                #{item.cart.id}
+              .col-md-2
+                #{item.user.email}
+                =link_to '',item.user, class:"fa fa-arrow-circle-right"
+              .col-md-3
+                #{item.address}
+              .col-md-1
+                #{item.cart.line_items.length}
+              .col-md-2
+                #{item.created_at.strftime("%d %b. %Y %H:%M")}
+              -#%td= link_to 'Показать', book_order
+              -#%td= link_to 'Редактировать', edit_book_order_path(book_order)
+              -#%td= link_to 'Удалить', book_order, :method => :delete, :data => { :confirm => 'Вы уверены?' }
 
-      %tbody
-        - @book_orders.each do |book_order|
-          %tr
-            %td= book_order.cart.id
-            %td= book_order.user.email
-            %td= book_order.address
-            %td= book_order.comment
-            %td= link_to 'Показать', book_order
-            %td= link_to 'Редактировать', edit_book_order_path(book_order)
-            - if !@current_user.blank?
-              - if @current_user.role!=0
-                %td= link_to 'Удалить', book_order, :method => :delete, :data => { :confirm => 'Вы уверены?' }
+              -#.list-group-item
+              -#.row.text-center
+              .col-xs-1
+                .button= link_to '', item, class: "btn btn-info btn-sm fa fa-eye", title: "Показать"
+              .col-xs-1.col-md-1
+                .button= link_to '', edit_book_order_path(item), class: "btn btn-warning btn-sm fa fa-pencil", title:"Редактировать"
+              .col-xs-1
+                .button= link_to '', item, :method => :delete, :data => { :confirm => 'Вы уверены?' }, class: "btn btn-danger btn-sm fa fa-trash", title: "Удалить"
+
+  -if !@current_user.try(:admin?)
+    %h1 Заказы
+
+    .row
+      .list-group
+        .list-group-item.active
+          .row
+            .col-md-1
+              Корзина
+            .col-md-3
+              Адрес
+            .col-md-3
+              Дата
+      - @book_orders.each do |item|
+        .list-group-item
+          .row
+            .col-md-1
+              #{item.cart.id}
+            .col-md-3
+              #{item.address}
+            .col-md-3
+              #{item.created_at.strftime("%d %b. %Y %H:%M")}
+
+            .col-xs-1
+              .button= link_to '', item, class: "btn btn-info btn-sm fa fa-eye", title: "Показать"
 %br
-
 = paginate @book_orders
+
+
+
+-#
+-#- if !@current_user.blank?
+-#  - if @current_user.role == 0
+-#    %h1 Список заказов
+-#  - else
+-#    %h1 Заказы всех пользователей
+-#
+-#- if !@current_user.blank?
+-#  - if BookOrder.where(user_id: @current_user.id).count == 0
+-#    .alert.alert-info У Вас еще нет ни одного заказа
+-#  - else
+-#    %table.table.table-bordered.table-hover.table-condensed
+-#      %thead
+-#        %tr
+-#          %th Корзина
+-#          %th Пользователь
+-#          %th Адрес
+-#          %th Комментарий
+-#          %th
+-#          %th
+-#          - if !@current_user.blank?
+-#            - if @current_user.role!=0
+-#              %th
+-#
+-#      %tbody
+-#        - @book_orders.each do |book_order|
+-#          %tr
+-#            %td= book_order.cart.id
+-#            %td= book_order.user.email
+-#            %td= book_order.address
+-#            %td= book_order.comment
+-#            %td= book_order.created_at
+-#            %td= link_to 'Показать', book_order
+-#            %td= link_to 'Редактировать', edit_book_order_path(book_order)
+-#            - if !@current_user.blank?
+-#              - if @current_user.role!=0
+-#                %td= link_to 'Удалить', book_order, :method => :delete, :data => { :confirm => 'Вы уверены?' }
+-#%br
+-#
+-#= paginate @book_orders
+
+-#===========================
+
+-#
+-#
+-#.page-header
+-#  <h2>Корзина</h2>
+-#.row
+-#  .list-group
+-#    .list-group-item.active
+-#      .row
+-#        .col-md-3
+-#          Название
+-#        .col-md-3
+-#          Количество
+-#        .col-md-3
+-#          Цена
+-#        .col-md-3
+-#          Сумма
+-#  - @cart.line_items.each do |item|
+-#    .list-group-item
+-#      .row
+-#        .col-md-3
+-#          #{item.book.name}
+-#        .col-md-3
+-#          =link_to '',line_item_path(id:item.id,place:"line_items"), data:{method: :delete}, class:"btn btn-mini glyphicon glyphicon-minus"
+-#          #{item.quantity}
+-#          =link_to '',line_items_path(id:item.id,place:"line_items"),data:{method: :post}, class:"btn btn-mini glyphicon glyphicon-plus"
+-#        .col-md-3
+-#          #{item.price}
+-#        .col-md-3
+-#          #{item.quantity*item.price}
+-#.row
+-#  .col-md-4
+-#    .list-group
+-#      .list-group-item.active.glyphicon.glyphicon-list.li
+-#        Итог:
+-#      .list-group-item.glyphicon.glyphicon-info-sign.li
+-#        Всего товарных позиций: #{@cart.line_items.length}
+-#        .br
+-#        .li
+-#          Всего книг:
+-#          #{@cart.line_items.sum("quantity")}
+-#      .list-group-item.glyphicon.glyphicon-ruble
+-#        Цена:
+-#        #{number_to_currency(@cart.all_summ)}
+-#
+-#-#= link_to 'Редактировать', edit_cart_path(@cart), class: "btn btn-link"
+-#= link_to 'Очистить корзину', @cart, data:{method: :delete, confirm: "Вы уверены?"}, class: "btn btn-primary"
+-#\|
+-#= link_to 'Вернуться к выбору книг', books_path, class: "btn btn-info"
+-#\|
+-#= link_to 'Оформить заказ', new_book_order_path, class: "btn btn-danger"

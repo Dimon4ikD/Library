@@ -12,7 +12,13 @@
 %p
   %b Товар:
   = @line_item.book.name
+-if @current_user.try(:admin?)
 
-= link_to 'Изменить', edit_line_item_path(@line_item)
-\|
+= link_to '', edit_line_item_path(@line_item), class: "btn btn-warning btn-lg fa fa-pencil", title:"Редактировать"
+|
+= link_to '', line_items_path, class: "btn btn-default btn-lg fa fa-reply", title:"Назад"
+
+
+  = link_to 'Изменить', edit_line_item_path(@line_item)
+  \|
 = link_to 'Назад', line_items_path

@@ -48,7 +48,7 @@ class ApplicationController < ActionController::Base
   end
 
   def admin_permission
-    unless @current_user.try(:administrator?)
+    unless @current_user.try(:admin?)
       flash[:danger]="Недостаточно прав"
       redirect_to login_path
     end

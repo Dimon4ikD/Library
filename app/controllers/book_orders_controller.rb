@@ -1,7 +1,7 @@
 class BookOrdersController < ApplicationController
   before_action :set_book_order, only: [:show, :edit, :update, :destroy]
   before_action :require_login
-  before_action :manager_permission, except: [:new, :create]
+  # before_action :manager_permission, except: [:new, :create]
 
   # GET /book_order
   # GET /book_order.json

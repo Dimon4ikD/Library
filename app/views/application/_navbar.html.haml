@@ -26,6 +26,7 @@
             %ul.dropdown-menu
               -#%li=link_to "Корзина", line_items_path
               -#-#%li=link_to "Избранное", @electee
+              %li=link_to "Пользователь", @current_user
               %li=link_to "Заказы", book_orders_path
               %li=link_to 'Выход', logout_path, data:{method: :patch}
         -else

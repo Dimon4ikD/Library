@@ -29,19 +29,16 @@ class User < ActiveRecord::Base
     controller.session[:user_id]=id
   end
 
+  def user?
+    role==0
+  end
+
   def admin?
     role==1
   end
 
-
-  def moderator?
-    role==1 || administrator?
-  end
   def administrator?
     role==2
-  end
-  def user?
-    role==0
   end
 
 

@@ -1,0 +1,27 @@
+.page-header
+  %h1 Список заказов
+
+%table.table.table-bordered.table-hover.table-condensed
+  %thead
+    %tr
+      %th Корзина
+      %th Пользователь
+      %th Адрес доставки
+      %th Комментарий
+      %th
+      %th
+      %th
+
+  %tbody
+    - @book_orders.each do |book_order|
+      %tr
+        %td= book_order.cart_id
+        %td= book_order.user_id
+        %td= book_order.address
+        %td= book_order.comment
+        %td= link_to 'Показать', book_order
+        %td= link_to 'Редактировать', edit_book_order_path(book_order)
+        %td= link_to 'Удалить', book_order, :method => :delete, :data => { :confirm => 'Вы уверены?' }
+
+%br
+= paginate @book_orders

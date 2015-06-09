@@ -22,6 +22,9 @@ class LineItemsController < ApplicationController
 
   # GET /line_items/1/edit
   def edit
+    if !@current_user.try(:admin?)
+      redirect_to new_user_path, notice:"Вы не админинстратор"
+    end
   end
 
   # POST /line_items

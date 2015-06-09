@@ -14,7 +14,9 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    @cart.destroy
     session.delete(:user_id)
+
     redirect_to root_path, notice: "Вы вышли!"
   end
 

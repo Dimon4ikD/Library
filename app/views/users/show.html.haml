@@ -2,25 +2,28 @@
 -#  = redirect_to @current_user, notice:"Вы не админинстратор"
 
   = link_to "#{@current_user.email}", @current_user
-%p#notice= notice
-%p
-  %strong Name:
-  = @user.name
-%p
-  %strong Email:
-  = @user.email
-%p
-  %strong Phone:
-  = @user.phone
-%p
-  %strong Address:
-  = @user.address
-%p
-  %strong Role:
-  = @user.role
+.list-group
+  %p#notice= notice
+  %p
+    %strong Имя:
+    = @user.name
+  %p
+    %strong Почта:
+    = @user.email
+  %p
+    %strong Телефон:
+    = @user.phone
+  %p
+    %strong Адрес:
+    = @user.address
+  %p
+    %strong Роль:
+    = @user.role
 
 -#= link_to 'Книги', book_exemplar(@user)
+= link_to '', edit_user_path(@user), class: "btn btn-warning btn-lg fa fa-pencil", title:"Редактировать"
+-#|
+-#= link_to '', users_path, class: "btn btn-default btn-lg fa fa-reply", title:"Назад"
 
-= link_to 'Изменить', edit_user_path(@user)
-|
-= link_to 'Назад', users_path
+-#|
+-#= link_to 'Назад', users_path

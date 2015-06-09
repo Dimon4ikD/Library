@@ -1,4 +1,5 @@
-
+-require 'open-uri'
+-require 'pdf/reader'
 .br
 .page-header
   .h1=@book.name
@@ -12,7 +13,7 @@
 -if !@book.image.blank?
   = image_tag @book.image.url(:medium), height:"265"#, alt: @book.name, class: 'img-responsive'
 -else
-  =image_tag ("blank.jpeg"),src: root_path, height:"265", data: {toggle: "collapse", target:"#menu"}#, alt: @book.name, class: 'img-responsive'
+  =image_tag ("blank.png"),src: root_path, height:"265", data: {toggle: "collapse", target:"#menu"}#, alt: @book.name, class: 'img-responsive'
 
 
 -#.row
@@ -21,7 +22,18 @@
 -#    -@sum,@sum2=0,0;@cart.line_items.each{|itm| @sum+=itm.quantity;@sum2+=itm.price*itm.quantity}
 -#    = link_to "В вашей корзине #{@sum} #{Russian.p(@sum,'товар','товара','товаров')}. Общая цена: #{number_to_currency(@sum2, separator: ",", delimiter: "", unit: "₽", format: "%n %u")}", @cart, class: "btn btn-danger", :style => "white-space:normal; width: 216px;"
 
-
+-#t.string :name, null: false
+-#t.integer :amount
+-#t.date :year
+-#t.string :author, null: false
+-#t.integer :pages_amount
+-#t.string :isbn
+-#t.string :udc
+-#t.string :lbc
+-#t.integer :price
+-#t.text :description
+-#t.attachment :document
+%p
 %p
   %b Название:
   = @book.name
@@ -31,14 +43,38 @@
 %p
   %b Количество:
   = @book.amount
-
-
+%p
+  %b Год:
+  = @book.year
+%p
+  %b Количество страниц:
+  = @book.pages_amount
+%p
+  %b ISBN:
+  = @book.isbn
+%p
+  %b UDC:
+  = @book.udc
+%p
+  %b LBC:
+  = @book.lbc
 %p
   %b Описание:
   = @book.description
 %p
   %b Цена:
   = number_to_currency(@book.price)
+
+-#%p
+-#  %b Book:
+-#  = @book.name
+-#  = link_to @book.document.url
+-#  =fa_icon "arrow-circle-right"
+
+-#%p
+-#  = link_to @book.document, class: "btn btn-link" do
+-#    =fa_icon "arrow-circle-right"
+
 %p
 
 -a=@cart.line_items.where("book_id= ?",@book.id)
@@ -49,6 +85,7 @@
   #{b.quantity}
   =link_to '',line_items_path(id:b.id,place: "show"),data:{:method => :post}, class:"btn btn-mini glyphicon glyphicon-plus"
 %p
+-#%p
 -#-if @current_user.admin?
 -#  =  @book.document.url(:medium), alt: @book.name, class: 'img-responsive'
 
@@ -57,7 +94,7 @@
   Добавить в корзину
 \|
 = link_to line_items_path, class: "btn btn-info" do
-  =fa_icon "share"
+  =fa_icon "shopping-cart"
   Перейти к корзине
 -if @current_user.try(:admin?)
   \|
@@ -68,4 +105,5 @@
 = link_to books_path, class: "btn btn-primary" do
   =fa_icon "reply"
   Вернуться к списку товаров
+%p
 

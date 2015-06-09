@@ -15,6 +15,7 @@
 %p
   %b Комментарий:
   = @book_order.comment
+
 %p
   %b Список товаров:
   .row
@@ -32,11 +33,14 @@
             .span.badge= fa_icon "ruble"
             =number_to_currency(item.price*item.quantity,
               separator: ",", delimiter: "", format: "%n")
+          .list-group-item.li
+            .span-badge=item.created_at.strftime("%d %b. %Y %H:%M")
+
           -#.list-group-item
           -#  =link_to "Download Now", @book.document, :class => "btn btn-large btn-danger"
 -if @current_user.try(:admin?)
   = link_to 'Изменить', edit_book_order_path(@book_order)
-|
+  |
 = link_to 'Назад', book_orders_path
 
 -#

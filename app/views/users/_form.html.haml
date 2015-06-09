@@ -20,9 +20,10 @@
   .form-group
   =f.label :address
   =f.text_area :address, class: "form-control"
-  -#.form-group
-  -#=f.label :role
-  -#=f.number_field :role, class: "form-control"
+  -if @current_user.try(:admin?)
+    .form-group
+    =f.label :role
+    =f.number_field :role, class: "form-control"
   %p
     .actions=f.submit nil, class: "btn btn-primary", role: "button"
 

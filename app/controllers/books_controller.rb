@@ -12,6 +12,12 @@ class BooksController < ApplicationController
   # GET /books/1
   # GET /books/1.json
   def show
+
+    def pdf
+      pdf_filename = File.join(Rails.root, "app/assets/docs/doc1.pdf")
+      send_file(pdf_filename, :filename => "your_document.pdf", :type => "application/pdf")
+    end
+
   end
 
   # GET /books/new

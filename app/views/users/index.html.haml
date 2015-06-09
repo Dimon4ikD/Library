@@ -46,21 +46,22 @@
           Адрес
         .col-md-1
           Роль
-  - @users.each do |user|
-    .list-group-item
-      .row
-        .col-md-3
-          #{user.name}
-        .col-md-2
-          #{user.email}
-        .col-md-2
-          #{user.phone}
-        .col-md-2
-          #{user.address}
-        .col-md-1
-          #{user.role}
-        = link_to '', user, class: "btn btn-info glyphicon glyphicon-search", title: "Показать"
-        = link_to '', edit_user_path(user), class: "btn btn-warning glyphicon glyphicon-pencil", title:"Редактировать"
-        = link_to '', user, method: :delete, data: { confirm: 'ВЫ уверены?' }, class: "btn btn-danger glyphicon glyphicon-trash", title: "Удалить"
-%br/
-= link_to 'Новый пользователь', new_user_path
+  .list-group
+    - @users.each do |user|
+      .list-group-item
+        .row
+          .col-md-3
+            #{user.name}
+          .col-md-2
+            #{user.email}
+          .col-md-2
+            #{user.phone}
+          .col-md-2
+            #{user.address}
+          .col-md-1
+            #{user.role}
+          = link_to '', user, class: "btn btn-info glyphicon glyphicon-search", title: "Показать"
+          = link_to '', edit_user_path(user), class: "btn btn-warning glyphicon glyphicon-pencil", title:"Редактировать"
+          = link_to '', user, method: :delete, data: { confirm: 'ВЫ уверены?' }, class: "btn btn-danger glyphicon glyphicon-trash", title: "Удалить"
+  %br/
+= link_to ' Новый пользователь', new_user_path, class:"btn btn-primary fa fa-plus"
