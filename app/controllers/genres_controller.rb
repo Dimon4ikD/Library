@@ -15,7 +15,11 @@ class GenresController < ApplicationController
 
 
   def new
-    @genre = Genre.new
+    if !@current_user.try(:admin?)
+      redirect_to new_user_path, notice:"Вы не админинстратор"
+    else
+      @genre = Genre.new
+    end
   end
 
   def edit
@@ -62,6 +66,8 @@ class GenresController < ApplicationController
   end
 
   def manager_permission
-    render_error unless Genre.manage?(@current_user)
+    if !@current_user.try(:admin?)
+      redirect_to new_user_path, notice:"Вы не админинстратор"
+    end
   end
 end

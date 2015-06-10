@@ -27,6 +27,8 @@ ru:
         password_confirmation: Пароль (повторно)
         role: Роль
         login: Логин
+        phone: Телефон
+        address: Адрес
       book:
         name: Название
         amount: Количество
@@ -36,9 +38,18 @@ ru:
         isbn: ИСБН
         udc: ЮДС
         lbc: ЛБС
+        price: Цена
+        image: Обложка
+        genre: Жанр
       book_exemplar:
         book: Книга
         place: Место
+      genre:
+        name: Название
+      author:
+        name: Имя
+        birthday: Дата рождения
+        avatar: Аватар
 
 
 

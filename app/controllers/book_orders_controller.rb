@@ -35,6 +35,7 @@ class BookOrdersController < ApplicationController
     @book_order = BookOrder.new(new_book_order_params)
     @book_order.cart = @cart
     @book_order.user = @current_user
+    # @book_order.decrease_q
     @book_order.add_lineitems(@cart)
     if @book_order.save
       session.delete(:cart_id)
@@ -80,6 +81,6 @@ class BookOrdersController < ApplicationController
   end
 
   def new_book_order_params
-    params.require(:book_order).permit(:address)
+    params.require(:book_order).permit(:address, :comment)
   end
 end

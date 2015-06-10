@@ -25,12 +25,12 @@
     %br/
     = f.number_field :pages_amount, class: 'form-control'
   .field
-    =f.label :genre_id
+    =f.label "Жанр"
     %br/
     =f.select :genre_id, Genre.ordering.map{|c| [c.name,c.id]},{}, class: 'form-control'
 
   .field
-    =f.label :author_id
+    =f.label "Автор"
     %br/
     =f.select :author_id, Author.ordering.map{|c| [c.name,c.id]},{}, class: 'form-control'
     -#=f.text_field :author_id, data: {tokeninput:  authors_path(format: :json),
@@ -48,11 +48,11 @@
     %br/
     = f.text_field :lbc, class: 'form-control'
   .field
-    = f.label :price
+    = f.label "Цена"
     %br/
     = f.number_field :price, class: 'form-control'
   .field
-    = f.label :description
+    = f.label "Описание"
     %br/
     = f.text_area :description, class: 'form-control'
   -if !@book.image.blank?

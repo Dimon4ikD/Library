@@ -22,7 +22,11 @@ class BooksController < ApplicationController
 
   # GET /books/new
   def new
-    @book = Book.new
+    if !@current_user.try(:admin?)
+      redirect_to new_user_path, notice:"Вы не админинстратор"
+    else
+      @book = Book.new
+    end
   end
 
   # GET /books/1/edit

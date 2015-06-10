@@ -1,7 +1,7 @@
 class BookOrder < ActiveRecord::Base
 
   after_create :send_mail
-
+  after_create :decrease_q
   belongs_to :cart, ->{includes(:line_items => :book).order(:created_at)}
   belongs_to :user
   # belongs_to :book_exemplar
@@ -21,6 +21,23 @@ class BookOrder < ActiveRecord::Base
       errors.add(:cart, "Корзина пуста!")
     end
   end
+
+  def decrease_q
+    # self.cart.line_items.book.update()
+    cart.line_items.each do |t|
+      if t.book.amount!=0
+        t.book.update(amount: t.book.amount-t.quantity)
+        # t.book.amount-=t.quantity
+        # t.book.save
+      else puts "Книг больше нет!"
+
+      end
+    end
+  end
+
+
+
+
   def add_lineitems(cart)
     line_items=[]
     cart.line_items.each do |l_i|

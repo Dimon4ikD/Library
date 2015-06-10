@@ -28,7 +28,7 @@
             = link_to item.book, class: "btn btn-link"do
               =fa_icon "arrow-circle-right"
           .list-group-item.li
-            =item.book.author
+            =item.book.author.name
           .list-group-item.li
             .span.badge= fa_icon "ruble"
             =number_to_currency(item.price*item.quantity,
@@ -41,7 +41,7 @@
 -if @current_user.try(:admin?)
   = link_to 'Изменить', edit_book_order_path(@book_order)
   |
-= link_to 'Назад', book_orders_path
+= link_to 'Назад', book_orders_path, class: 'btn btn-primary'
 
 -#
 -#%p

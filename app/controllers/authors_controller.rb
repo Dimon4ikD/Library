@@ -24,10 +24,17 @@ class AuthorsController < ApplicationController
 
 
   def new
-    @author = Author.new
+    if !@current_user.try(:admin?)
+      redirect_to new_user_path, notice:"Вы не админинстратор"
+    else
+      @author = Author.new
+    end
   end
 
   def edit
+    if !@current_user.try(:admin?)
+      redirect_to new_user_path, notice:"Вы не админинстратор"
+    end
   end
 
 
@@ -68,6 +75,8 @@ class AuthorsController < ApplicationController
   end
 
   def manager_permission
-    render_error unless Author.manage?(@current_user)
+    if !@current_user.try(:admin?)
+      redirect_to new_user_path, notice:"Вы не админинстратор"
+    end
   end
 end
