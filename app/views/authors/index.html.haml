@@ -1,0 +1,11 @@
+.page-header
+  %h1 Авторы
+
+.list-group=render @authors
+
+-if Author.manage?(@current_user)
+  .btn-toolbar
+    =link_to new_author_path, class: 'btn btn-primary' do
+      =fa_icon 'plus'
+      Добавить
+=paginate @authors

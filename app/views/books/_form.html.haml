@@ -21,13 +21,20 @@
     -#= f.date_select :year, :discard_year => true
     = f.text_field :year, class: 'form-control'
   .field
-    = f.label :author
-    %br/
-    = f.text_field :author, class: 'form-control'
-  .field
     = f.label :pages_amount
     %br/
     = f.number_field :pages_amount, class: 'form-control'
+  .field
+    =f.label :genre_id
+    %br/
+    =f.select :genre_id, Genre.ordering.map{|c| [c.name,c.id]},{}, class: 'form-control'
+
+  .field
+    =f.label :author_id
+    %br/
+    =f.select :author_id, Author.ordering.map{|c| [c.name,c.id]},{}, class: 'form-control'
+    -#=f.text_field :author_id, data: {tokeninput:  authors_path(format: :json),
+    -#    pre: [@book.author].compact.to_json, limit: 1}
   .field
     = f.label :isbn
     %br/

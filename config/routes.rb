@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :genres
+
+  resources :authors
+
   resources :line_items
 
   resources :carts

@@ -68,8 +68,11 @@ class BooksController < ApplicationController
       @book = Book.find(params[:id])
     end
 
+    def manager_permission
+      render_error unless Book.manage?(@current_user)
+    end
     # Never trust parameters from the scary internet, only allow the white list through.
     def book_params
-      params.require(:book).permit(:name, :amount, :year, :author, :pages_amount, :isbn, :udc, :lbc, :image, :description, :price, :document)
+      params.require(:book).permit(:name, :amount, :year, :author_id, :pages_amount, :genre_id, :isbn, :udc, :lbc, :image, :description, :price, :document)
     end
 end

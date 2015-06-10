@@ -13,7 +13,12 @@ ru:
       book: Книга
       book_exemplar: Экземпляр
       place: Место
-      book_order: заказ
+      book_order: Заказ
+      author: Автор
+      cart: Корзина
+      genre: Жанр
+      line_item: Элемент корзины
+
     attributes:
       user:
         name: Имя
@@ -22,11 +27,6 @@ ru:
         password_confirmation: Пароль (повторно)
         role: Роль
         login: Логин
-
-      place:
-        cupboard_number: Номер шкафа
-        storey_number: Номер этажа
-        shelf_number: Номер полки
       book:
         name: Название
         amount: Количество

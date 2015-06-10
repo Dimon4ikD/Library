@@ -1,0 +1,9 @@
+= form_for @genre do |f|
+  =error_messages_for @genre
+
+  .form-group
+    = f.label :name
+    = f.text_field :name, class: 'form-control'
+  %p
+  .actions
+    = f.submit nil, class:'btn btn-primary'

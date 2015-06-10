@@ -1,0 +1,20 @@
+=link_to book, class: 'list-group-item' do
+  .media
+    -if book.image.blank?
+      .media-left=image_tag ("blank.png"), height:"265", style: "display: block; margin: 0px auto;", alt: book.name, class: 'media-object'
+    -if !book.image.blank?
+      .media-left=image_tag book.image.url, height:"265", style: "display: block; margin: 0px auto;", alt: book.name, class: 'media-object'
+
+
+    -#-if !book.image.blank?
+    -#  = link_to book, class: "form-group" do
+    -#    .media-left=image_tag book.image.url(:small), alt: book.name, class: 'media-object'
+    -#-else
+    -#  = link_to book, class: "form-group" do
+    -#    .media-left=image_tag ("blank.png"),src: root_path, class: 'media-object'
+    .media-body
+      %h4.media-heading
+        =book.name
+      %i
+        =book.genre.name
+

@@ -11,10 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150602103109) do
+ActiveRecord::Schema.define(version: 20150609192844) do
+
+  create_table "authors", force: :cascade do |t|
+    t.string   "name"
+    t.date     "birthday"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
 
   create_table "book_exemplars", force: :cascade do |t|
     t.integer  "book_id"
+    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -39,7 +51,8 @@ ActiveRecord::Schema.define(version: 20150602103109) do
     t.string   "name",                    null: false
     t.integer  "amount"
     t.date     "year"
-    t.string   "author",                  null: false
+    t.integer  "author_id"
+    t.integer  "genre_id"
     t.integer  "pages_amount"
     t.string   "isbn"
     t.string   "udc"
@@ -62,7 +75,16 @@ ActiveRecord::Schema.define(version: 20150602103109) do
     t.datetime "attachment_updated_at"
   end
 
+  add_index "books", ["author_id"], name: "index_books_on_author_id"
+  add_index "books", ["genre_id"], name: "index_books_on_genre_id"
+
   create_table "carts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "genres", force: :cascade do |t|
+    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

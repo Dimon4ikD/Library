@@ -39,7 +39,8 @@
   = @book.name
 %p
   %b Автор:
-  = @book.author
+  =link_to @book.author.name, @book.author
+  -#=render 'authors/author', author: @book.author
 %p
   %b Количество:
   = @book.amount
@@ -49,6 +50,10 @@
 %p
   %b Количество страниц:
   = @book.pages_amount
+%p
+  %b Жанр
+  -#=Book.human_attribute_name(:genre)
+  =link_to @book.genre.name,@book.genre
 %p
   %b ISBN:
   = @book.isbn
@@ -104,6 +109,6 @@
 \|
 = link_to books_path, class: "btn btn-primary" do
   =fa_icon "reply"
-  Вернуться к списку товаров
+  Вернуться к списку книг
 %p
 

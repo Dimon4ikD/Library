@@ -50,7 +50,7 @@
     .col-md-4
       .list-group
         .list-group-item
-          -if !bookd.image.blank? 
+          -if !bookd.image.blank?
             = link_to bookd, class: "form-group" do
               =image_tag bookd.image.url(:medium), height:"265", style: "display: block; margin: 0px auto;", alt: bookd.name, class: "thumb"
           -else
@@ -63,7 +63,11 @@
         .list-group-item
           Автор
           .badge
-            =bookd.author
+            =bookd.author.name
+        .list-group-item
+          Жанр
+          .badge
+            =bookd.genre.name
         .list-group-item
           Цена:
           .badge

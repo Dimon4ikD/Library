@@ -5,10 +5,10 @@ class CreateBookExemplars < ActiveRecord::Migration
       t.references :user
       t.timestamps null: false
 
-      belongs_to :books
+      # belongs_to :books
 
     end
-    add_foreign_key :book_exemplars, :books
-    add_foreign_key :book_exemplars, :users
+    # add_foreign_key :book_exemplars, :books
+    # add_foreign_key :book_exemplars, :users
   end
 end
