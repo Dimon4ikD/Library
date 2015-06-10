@@ -1,9 +1,10 @@
-puts "======Генерация книг======"
-desc "Генерация 4 книг"
+
+desc "Генерация 35 книг"
 namespace :books do
+  puts "======Генерация книг======"
   task create: :environment do
-    20.times do |i|
-      b = Book.new(id: "#{i+10}",name: "Книга #{i+5}", price: rand(1.0E6)/100.0+1, genre_id: rand(10), author_id: rand(2), amount: "2#{i}", year: "02.01.19#{i+10}")
+    35.times do |i|
+      b = Book.new(id: "#{i}",name: "Книга #{i+5}", price: rand(1.0E6)/100.0+1, genre_id: rand(17), author_id: rand(2), amount: "2#{i}", year: "02.01.19#{i+10}")
       puts b.inspect
       # b.image=open("./app/assets/image/cover1.jpg")
       b.pages_amount = "1#{rand(600)}"

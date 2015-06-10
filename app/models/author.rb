@@ -1,6 +1,6 @@
 class Author < ActiveRecord::Base
 
-  has_attached_file :avatar, styles: {medium: "250x250>", thumb: "100x100>"}
+  has_attached_file :avatar, styles: {medium: "250x300>", thumb: "width: 70, hight:70"}
 
 
   validates :name, presence: true

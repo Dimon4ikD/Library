@@ -1,7 +1,14 @@
-=link_to author, class: 'list-group-item' do
+-#.list-group-item.active:hover {background-color: #007715;  !important; border-color: #aed248;  !important;}
+-#.style.type"text/css"
+-#  .list-group-item.active:hover,{
+-#    background-color: #aed248; !important;
+-#    border-color: #aed248;     !important;
+-#    }
+
+=link_to author, id:'hang', class: 'list-group-item', style: "list-group-item.active:hover" do
   .media
     -if author.avatar?
-      .media-left=image_tag author.avatar.url(:thumb), alt: author.name, class: 'media-object'
+      .media-left=image_tag author.avatar.url(:thumb),width: 40, alt: author.name, class: 'media-object'
     .media-body
       %h4.media-heading=author.name
 

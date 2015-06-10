@@ -2,7 +2,7 @@
   .container
     .navbar-header
       .navbar-brand
-        .pull-right
+        .pull-right.collapse.navbar-collapse
           =image_tag ("logo_5.png"),src: root_path, size:"25x25", data: {toggle: "collapse", target:"#menu"}
 
       =link_to ?#, class: "navbar-toggle collapsed", data: {toggle: "collapse", target:"#menu"} do
